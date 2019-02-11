@@ -8,8 +8,8 @@
 2. run the `bundle install` command
 3. run the `rails db:create` command
 4. run the `rails db:migrate` command
-5. if you run `rails db:seed`, your web browser will pop up and show all the emails the app sent
-6. you can also run the `rspec` command, that should return a well tested app 
+5. if you run `rails db:seed`, your web browser will pop up and show all the emails the app sent :boom:
+6. you can also run the `rspec` command, that should return a well tested app :punch:
 
 ### the tables that compose the app
 
@@ -36,11 +36,11 @@ this app is composed of three tables in its database :
 - participant_id *(a user)*
 - event_id *(an event)*
 
-### rspec
+### rspec :punch:
 
 we put tests on every models, especially for the event model, which contains a lot of validations, and two methods for validations.
 
-### mailers
+### mailers :boom:
 
 emails are sent when a user is created, to welcome him/her. 
 
