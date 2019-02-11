@@ -18,6 +18,7 @@ class Event < ApplicationRecord
 		numericality: {greater_than: 1, less_than: 1000}
 	validates :location,
 		presence: true
+	
 	belongs_to :admin, class_name: "User"
 
 	def start_date_is_after_time_now

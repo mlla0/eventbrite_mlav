@@ -6,4 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Event.create(start_date: "2019-03-08 00:00:00", duration: 20, title:"Yo viens faire la teuf", description:"Aller viens ca va être bien. Pourquoi tu veux pas venir?", price: 999, location:"Paris", admin_id: 1)
+User.destroy_all
+Event.destroy_all
+Attendance.destroy_all
+
+10.times do
+	User.create(email: "#{Faker::Name.first_name.downcase}@yopmail.com", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Hipster.sentence)
+end
+
+5.times do
+	Event.create(start_date: Faker::Date.forward(365), duration: 45, title: Faker::Hipster.sentence, description: Faker::Hipster.paragraph, price: rand(1..1000), location: Faker::Address.city, admin: User.all.sample)
+end
+
+20.times do
+	Attendance.create(stripe_customer_id: Faker::Code.nric, participant: User.all.sample, event: Event.all.sample)
+end
