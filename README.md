@@ -15,14 +15,14 @@
 
 this app is composed of three tables in its database :
 
-** the `users` table, which contains the followings coloumns: **
+**the `users` table, which contains the followings coloumns:**
 - email *(a string)*
 - encrypted_password *(a string)*
 - first_name *(a string)*
 - last_name *(a string)*
 - description *(a text)*
 
-** the `events` table, which contains the followings coloumns: **
+**the `events` table, which contains the followings coloumns:**
 - start_date *(datetime, should be in the future)*
 - duration *(integer, should be a multiple of 5)*
 - title *(between 5 and 140 characters)*
@@ -31,7 +31,7 @@ this app is composed of three tables in its database :
 - location *(anywhere on the planet earth, our mother land)*
 - admin_id *(a user)*
 
-** the `attendances` table, which contains the followings coloumns: **
+**the `attendances` table, which contains the followings coloumns:**
 - strip_customer_id *(a string)*
 - participant_id *(a user)*
 - event_id *(an event)*
