@@ -1,0 +1,7 @@
+class User < ApplicationRecord
+	
+	has_many :attendances, foreign_key: "participant_id", class_name: "Attendance"
+	has_many :particip_events, through: :attendances
+	has_many :admin_events, foreign_key: "admin_id", class_name: "Event"
+
+end
