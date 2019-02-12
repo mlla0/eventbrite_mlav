@@ -11,7 +11,7 @@ Event.destroy_all
 Attendance.destroy_all
 
 10.times do
-	User.create(email: "#{Faker::Name.first_name.downcase}@yopmail.com", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Hipster.sentence)
+	User.create(email: "#{Faker::Name.first_name.downcase}@yopmail.com", password: "aaaaaa", password_confirmation: "aaaaaa", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Hipster.sentence)
 end
 
 5.times do

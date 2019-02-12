@@ -13,3 +13,38 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+	font-family: Montserrat !important;
+}
+
+.montserrat-light {
+	font-family: Montserrat !important;
+	font-weight: 300 !important;
+}
+
+.montserrat-regular {
+	font-family: Montserrat !important;
+	font-weight: 400 !important;
+}
+
+.montserrat-medium {
+	font-family: Montserrat !important;
+	font-weight: 500 !important;
+}
+
+.montserrat-bold {
+	font-family: Montserrat !important;
+	font-weight: 700 !important;
+}
+
+.lora-regular {
+	font-family: Lora !important;
+	font-weight: 400 !important;
+}
+
+.lora-bold {
+	font-family: Lora !important;
+	font-weight: 700 !important;
+}
+

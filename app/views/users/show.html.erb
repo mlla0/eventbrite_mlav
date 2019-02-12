@@ -1,2 +1,22 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="jumbotron jumbotron-fluid" style="margin-top: 5vh">
+  <div class="container text-center">
+    <h1 class="display-4 montserrat-light"><%= @user.first_name %> <%= @user.last_name %></h1>
+    <p class="lead lora-regular"><%= @user.description %></p>
+    <p class="lora-regular"><%= @user.email %></p>
+  </div>
+</div>
+
+<div class="row justify-content-end">
+	<%= link_to "Edit your profile", edit_user_path(current_user.id), :class => "btn btn-outline-secondary btn-sm" %> &nbsp; &nbsp; 
+	<%= link_to "Edit your account", edit_user_registration_path, :class => "btn btn-outline-secondary btn-sm" %>
+</div>
+
+<div class="row">
+<h2 class="montserrat-light">Your events:</h2>
+</div>
+
+<div class="list-group list-group-flush" style="margin-top: 5vh">
+	<% @events.each do |event| %>
+	<a href="<%= event_path(event.id) %>" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"><span class="lead lora-bold"><%= event.title %></span> <span><h1 class="montserrat-light" style="display: inline;"><%= event.start_date.strftime("%d") %></h1><h4 class="montserrat-light" style="display: inline;"><%= event.start_date.strftime(".%m.%Y") %></h4></span></a>
+	<% end %>
+</div>
