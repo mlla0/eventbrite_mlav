@@ -33,13 +33,25 @@
         </ul>
 
         <ul class="navbar-nav ml-auto">
+          
+          <% if user_signed_in? %>
           <li class="nav-item active">
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-              <%= link_to "Sign up", root_path, :class => "btn btn-outline-dark" %>
-              <%= link_to "Log in", root_path, :class => "btn btn-outline-dark" %>
+              <%= link_to "Your profile", user_path(current_user.id), :class => "btn btn-outline-dark" %>
+              <%= link_to "Sign out", destroy_user_session_path, method: :delete, :class => "btn btn-outline-dark" %>
             </div>
           </li>
-          
+
+          <% else %>
+          <li class="nav-item active">
+            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+              <%= link_to "Log in", new_user_session_path, :class => "btn btn-outline-dark" %>
+              <%= link_to "Sign up", new_user_registration_path, :class => "btn btn-outline-dark" %>
+            </div>
+          </li>
+
+          <% end %>
+
         </ul>
         
       </div>
