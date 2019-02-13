@@ -6,12 +6,12 @@
     <hr>
     <p class="lead lora-regular" style="padding: 5vh"><%= @event.description %></p>
     <% if  current_user == nil %>
-        <%= link_to "JOIN THE EVENT !", new_attendance_path, :class => "btn btn-outline-info" %>
+        <%= link_to "JOIN THE EVENT !", new_event_attendance_path(params[:id]), :class => "btn btn-outline-info" %>
      <% elsif  current_user.is_admin?(@event) %>
-        <%= link_to "EDIT", edit_event_path, :class => "btn btn-outline-info" %>
+        <%= link_to "EDIT", event_attendances_path(params[:id]), :class => "btn btn-outline-info" %>
      <% elsif  current_user.is_participant?(@event) %>
      <% else %>
-        <%= link_to "JOIN THE EVENT !", new_attendance_path, :class => "btn btn-outline-info" %>
+        <%= link_to "JOIN THE EVENT !", new_event_attendance_path(params[:id]), :class => "btn btn-outline-info" %>
      <% end %>
   </div>
 </div>

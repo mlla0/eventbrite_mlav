@@ -15,7 +15,7 @@ class Event < ApplicationRecord
 		length: {minimum: 20, maximum: 1000}
 	validates :price,
 		presence: true,
-		numericality: {greater_than: 1, less_than: 1000}
+		numericality: {greater_than: 0, less_than: 1000}
 	validates :location,
 		presence: true
 	

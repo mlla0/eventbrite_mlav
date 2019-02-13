@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     if @user.update(first_name: params[:first_name], last_name: params[:last_name], description: params[:description])
       redirect_to user_path(current_user.id), notice: "Your profile has been successfully edited !"
     else
-      redirect_to edit_gossip_path(params[:id]), alert: "#{@user.errors.full_messages.join(". ")}"
+      redirect_to edit_user_path(params[:id]), alert: "#{@user.errors.full_messages.join(". ")}"
     end  
   end
 
