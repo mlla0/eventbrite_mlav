@@ -2,6 +2,8 @@
 
 ## made in pair programming by maud lévy :fried_shrimp: & antoine vercoutère :poultry_leg:
 
+### production version: [http://poow-event.herokuapp.com/](http://poow-event.herokuapp.com/)
+
 ### how to use
 
 1. git clone the repository to your computer
