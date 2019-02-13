@@ -2,10 +2,9 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
 
-  describe "GET #show" do
-    it "returns http success" do
-      get :show
-      expect(response).to have_http_status(:success)
+	describe "GET #show" do
+    it "renders the show template" do  
+		assert_generates '/users/1', { controller: 'users', action: 'show', id: '1' }
     end
   end
 
