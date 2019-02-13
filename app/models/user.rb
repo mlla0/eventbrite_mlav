@@ -14,4 +14,20 @@ class User < ApplicationRecord
 		UserMailer.welcome_email(self).deliver_now
 	end
 
+	def is_admin?(event)
+		if Event.find(event.id).admin == self 
+			return true
+		end
+	end
+
+	def is_participant?(event)
+		a = Attendance.where(event_id: event.id)
+		a.each do |attendance|
+			if self.id.to_i == attendance.participant_id.to_i
+				return true			
+			end
+		end
+			return false
+	end
+
 end

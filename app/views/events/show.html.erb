@@ -1,3 +1,22 @@
+
+<div class="jumbotron jumbotron-fluid" style="margin-top: 5vh; word-wrap: break-word;">
+  <div class="container text-center">
+    <h1 class="display-4 montserrat-light"><%= @event.title %> </h1>
+    <p class="montserrat-light">Organized by <%= link_to "#{@admin.first_name}", "mailto:#{@admin.email}", :class => "text-muted" %></p>
+    <hr>
+    <p class="lead lora-regular" style="padding: 5vh"><%= @event.description %></p>
+    <% if  current_user == nil %>
+        <%= link_to "JOIN THE EVENT !", new_attendance_path, :class => "btn btn-outline-info" %>
+     <% elsif  current_user.is_admin?(@event) %>
+        <%= link_to "EDIT", edit_event_path, :class => "btn btn-outline-info" %>
+     <% elsif  current_user.is_participant?(@event) %>
+     <% else %>
+        <%= link_to "JOIN THE EVENT !", new_attendance_path, :class => "btn btn-outline-info" %>
+     <% end %>
+  </div>
+</div>
+
+
 <div class="row text-center" style="margin-top: 10vh">
 
     <div class="col-4">
@@ -13,16 +32,16 @@
     <div class="col-4">
         <h1><span class="badge badge-dark montserrat-light"><%= @attendances.count%></span></h1>
         <h5 class="lora-regular"><% if @attendances.count <= 1 %>
-     	Participant
-     	<% else %>
-     	Participants
-     	<% end %></h5>
+        Participant
+        <% else %>
+        Participants
+        <% end %></h5>
     </div>
 
 </div>
 
-<div class="row text-center" style="margin-top: 5vh">
 
+<div class="row text-center" style="margin-top: 5vh">
 
     <div class="col-4">
         <h1><span class="badge badge-dark montserrat-light"><%= @event.start_date.strftime("%d.%m.%Y") %></span></h1>
@@ -40,19 +59,3 @@
     </div>
 
 </div>
-
-      
-
-   
-
-<div class="jumbotron jumbotron-fluid" style="margin-top: 5vh; word-wrap: break-word;">
-  <div class="container text-center">
-    <h1 class="display-4 montserrat-light"><%= @event.title %> </h1>
-    <p class="montserrat-light">Organized by <%= link_to "#{@admin.first_name}", "mailto:#{@admin.email}", :class => "text-muted" %></p>
-    <hr>
-    <p class="lead lora-regular" style="padding: 5vh"><%= @event.description %></p>
-     
-  </div>
-</div>
-
-

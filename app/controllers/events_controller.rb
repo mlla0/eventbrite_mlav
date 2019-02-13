@@ -22,5 +22,7 @@ class EventsController < ApplicationController
   	@event = Event.find(params[:id])
   	@admin = User.find(@event.admin.id)
   	@attendances = Attendance.where(event_id: @event.id)
+    puts "******************"
+    puts current_user.is_participant?(@event)
   end
 end
