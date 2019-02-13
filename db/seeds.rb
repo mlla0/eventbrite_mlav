@@ -14,10 +14,10 @@ Attendance.destroy_all
 	User.create(email: "#{Faker::Name.first_name.downcase}@yopmail.com", password: "aaaaaa", password_confirmation: "aaaaaa", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Hipster.sentence)
 end
 
-5.times do
+20.times do
 	Event.create(start_date: Faker::Date.forward(365), duration: 45, title: Faker::Hipster.sentence, description: Faker::Hipster.paragraph, price: rand(1..1000), location: Faker::Address.city, admin: User.all.sample)
 end
 
-20.times do
+30.times do
 	Attendance.create(stripe_customer_id: Faker::Code.nric, participant: User.all.sample, event: Event.all.sample)
 end
