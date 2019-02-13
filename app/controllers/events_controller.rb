@@ -12,9 +12,9 @@ class EventsController < ApplicationController
   	@event = Event.new(start_date: params[:start_date], duration: params[:duration], title: params[:title], description: params[:description], price: params[:price], location: params[:location], admin_id: current_user.id)
 
     if @event.save
-      redirect_to event_path(@event.id), success: "Event successfully created !"
+      redirect_to event_path(@event.id), notice: "Event successfully created !"
     else
-      redirect_to new_event_path, danger: "#{@event.errors.full_messages.join(". ")}"
+      redirect_to new_event_path, alert: "#{@event.errors.full_messages.join(". ")}"
     end
   end
 
