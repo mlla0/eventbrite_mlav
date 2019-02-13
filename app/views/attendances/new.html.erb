@@ -1,5 +1,5 @@
-<div class="row text-center" style="margin-top: 10vh">
-<div class="col-12">
+<div class="row justify-content-center text-center" style="margin-top: 10vh">
+<div class="col-6">
 
 <%= form_tag event_attendances_path(params[:event_id]), :method => :post do %>
   <article>
@@ -10,6 +10,9 @@
     <% end %>
 
     <label class="amount">
+      <span class="lora-regular">Your reservation for the event</span><br/>
+      <h3 class="montserrat-light"><%= @event.title %></h3>
+      <hr/>
       <span class="lora-regular">Amount to pay:</span><br/>
       	<span class="display-1"><%= @event.price %> €</span>
     </label>
@@ -17,8 +20,9 @@
 
 		  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 		          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-		          data-description="A month's subscription"
+		          data-description="Your reservation for the event <%= @event.title %>"
 		          data-amount="<%= @stripe_price %>"
+              data-currency="eur"
 		          data-locale="auto">
 		  </script>
 
