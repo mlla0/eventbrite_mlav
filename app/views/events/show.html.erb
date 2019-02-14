@@ -1,21 +1,32 @@
+  <div class="row text-center" style="margin-top: 10vh">
 
-<div class="jumbotron jumbotron-fluid rounded" style="margin-top: 5vh; word-wrap: break-word;">
-  <div class="container text-center">
-    <h1 class="display-4 montserrat-light"><%= @event.title %> </h1>
-    <p class="montserrat-light">Organized by <%= link_to "#{@admin.first_name}", "mailto:#{@admin.email}", :class => "text-muted" %></p>
-    <hr>
-    <p class="lead lora-regular" style="padding: 5vh"><%= @event.description %></p>
-    <% if  current_user == nil %>
-        <%= link_to "JOIN THE EVENT !", new_event_attendance_path(params[:id]), :class => "btn btn-outline-info" %>
-     <% elsif  current_user.is_admin?(@event) %>
-        <%= link_to "EDIT", event_attendances_path(params[:id]), :class => "btn btn-outline-info" %>
-     <% elsif  current_user.is_participant?(@event) %>
-     <% else %>
-        <%= link_to "JOIN THE EVENT !", new_event_attendance_path(params[:id]), :class => "btn btn-outline-info" %>
-     <% end %>
-  </div>
+    <div class="col-4">
+        <%if @event.event_picture.attached?%>
+            <%= image_tag @event.event_picture, alt: 'event_picture',:class => "img-fluid rounded" %>
+        <%else%>
+        <%end%>
+    </div>
+
+    <div class="col-8">
+        <div class="jumbotron jumbotron-fluid rounded" style="word-wrap: break-word;">
+          <div class="container text-center">
+            <h1 class="display-4 montserrat-light"><%= @event.title %> </h1>
+            <p class="montserrat-light">Organized by <%= link_to "#{@admin.first_name}", "mailto:#{@admin.email}", :class => "text-muted" %></p>
+            <hr>
+            <p class="lead lora-regular" style="padding: 5vh"><%= @event.description %></p>
+            <% if  current_user == nil %>
+                <%= link_to "JOIN THE EVENT !", new_event_attendance_path(params[:id]), :class => "btn btn-outline-info" %>
+             <% elsif  current_user.is_admin?(@event) %>
+                <%= link_to "EDIT", event_attendances_path(params[:id]), :class => "btn btn-outline-info" %>
+             <% elsif  current_user.is_participant?(@event) %>
+             <% else %>
+                <%= link_to "JOIN THE EVENT !", new_event_attendance_path(params[:id]), :class => "btn btn-outline-info" %>
+             <% end %>
+          </div>
+        </div>
+    </div>
+
 </div>
-
 
 <div class="row text-center" style="margin-top: 10vh">
 

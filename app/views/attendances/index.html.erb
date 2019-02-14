@@ -5,7 +5,7 @@
 		  <div class="card-body">
 		    <h1><%= @event.title %></h1>
 		    <br>
-		    <p class="lora-regular"> Here you can check your reservations list and edit or delete your event.</p>
+		    <p class="lora-regular"> Here you can check your reservations list, edit or delete your event and change its picture.</p>
 		    <br>
 		    <p class="text-right">
 		    <%= link_to "Edit your event", edit_event_path(params[:event_id]), :class => "btn btn-outline-info" %>
@@ -24,4 +24,26 @@
 		</ul>
 	</div>
 
+</div>
+
+<div class="row justify-content-start align-items-center" style="margin-top: 5vh; margin-bottom: 5vh">
+  	<div class="col-md-6 col-sm-10">
+  		<div class="card">
+  			<div class="card-body">
+
+  		<h6 class="card-title">Change the event picture</h6>
+                  <%= form_tag event_event_pictures_path(@event), multipart: true do %>
+                  <div class="row">
+                  	<div class="col">
+                    <%= file_field_tag :event_picture, :class => "form-control-file" %>
+                </div>
+                <div class="col text-right">
+                    <%= submit_tag "Update event picture !", :class => "btn btn-outline-secondary btn-sm" %>
+                </div>
+                </div>
+                  <% end %>
+
+              </div>
+         </div>
+  	</div>
 </div>

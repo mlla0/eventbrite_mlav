@@ -20,6 +20,7 @@ class Event < ApplicationRecord
 		presence: true
 	
 	belongs_to :admin, class_name: "User"
+	has_one_attached :event_picture
 
 	def start_date_is_after_time_now
 		errors.add(:start_date, "must be before time now.") unless 
