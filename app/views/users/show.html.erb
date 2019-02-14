@@ -1,15 +1,40 @@
 <div class="jumbotron jumbotron-fluid" style="margin-top: 5vh">
   <div class="container text-center">
+
+  	<%if @user.avatar.attached?%>
+  <%= image_tag @user.avatar, alt: 'avatar', width: 100, :class => "rounded-circle" %>
+<%else%>
+  <p>=== Il n'y a pas encore d'avatar lié à cet utilisateur ===</p>
+<%end%>
+
     <h1 class="display-4 montserrat-light"><%= @user.first_name %> <%= @user.last_name %></h1>
     <p class="lead lora-regular"><%= @user.description %></p>
     <p class="lora-regular"><%= @user.email %></p>
+
+    
+
   </div>
 </div>
 
-<div class="row justify-content-end">
-	<%= link_to "Edit your profile", edit_user_path(current_user.id), :class => "btn btn-outline-secondary btn-sm" %> &nbsp; &nbsp; 
-	<%= link_to "Edit your account", edit_user_registration_path, :class => "btn btn-outline-secondary btn-sm" %>
-</div>
+<div class="row justify-content-around align-items-center" style="margin-top: 5vh; margin-bottom: 5vh">
+  	<div class="col-md-5 col-sm-10 border border-dark rounded" style="padding: 5vh">
+  		<h6>Change profile picture</h6>
+                  <%= form_tag user_avatars_path(@user), multipart: true do %>
+                  <div class="row">
+                  	<div class="col">
+                    <%= file_field_tag :avatar, :class => "form-control-file" %>
+                </div>
+                <div class="col text-right">
+                    <%= submit_tag "mettre à jour", :class => "btn btn-outline-secondary btn-sm" %>
+                </div>
+                </div>
+                  <% end %>
+  	</div>
+  	<div class="col-md-5 col-sm-10 text-center">
+  		<%= link_to "Edit your profile", edit_user_path(current_user.id), :class => "btn btn-outline-secondary btn-sm" %> &nbsp; &nbsp; 
+		<%= link_to "Edit your account", edit_user_registration_path, :class => "btn btn-outline-secondary btn-sm" %>
+  	</div>
+  </div>
 
 <div class="row">
 <h2 class="montserrat-light">Your events:</h2>
