@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admins do
+    get 'admin/index'
+  end
   devise_for :users
   root 'events#index'
   resources :events do
@@ -10,7 +13,8 @@ Rails.application.routes.draw do
   end
 
   namespace :admins do
+    resources :admin, only: [:index]
   	resources :users
-  	root to: "users#index"
+  	root to: "admin#index"
   end
 end

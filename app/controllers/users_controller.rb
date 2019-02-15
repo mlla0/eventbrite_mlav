@@ -15,7 +15,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(first_name: params[:first_name], last_name: params[:last_name], description: params[:description])
-      redirect_to user_path(current_user.id), notice: "Your profile has been successfully edited !"
+      if current_user.admin == true && current_user.id.to_i != params[:id].to_i
+        redirect_to admins_users_path, notice: "User profile successfully edited !"
+      else
+        redirect_to user_path(current_user.id), notice: "Your profile has been successfully edited !"
+      end
     else
       redirect_to edit_user_path(params[:id]), alert: "#{@user.errors.full_messages.join(". ")}"
     end  
@@ -24,7 +28,7 @@ class UsersController < ApplicationController
   private
 
   def auth_user
-    unless current_user.id.to_i == params[:id].to_i
+    unless current_user.id.to_i == params[:id].to_i || current_user.admin == true
       redirect_to root_path
   	end
   end

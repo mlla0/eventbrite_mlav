@@ -1,0 +1,8 @@
+<div class="jumbotron jumbotron-fluid rounded" style="margin-top: 5vh">
+  <div class="container text-center">
+    <h1 class="montserrat-light">Welcome on your admin dashboard <%= current_user.first_name %></h1>
+    <p class="lead lora-regular">You can access your tools below</p>
+  </div>
+</div>
+
+<%= link_to "See all the users", admins_users_path, :class => "btn btn-outline-dark" %>

@@ -1,0 +1,26 @@
+<table class="table table-sm" style="margin-top: 10vh;">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Created at</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @users.each do |user| %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= user.first_name %></td>
+      <td><%= user.last_name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.created_at.strftime("%d.%m.%Y") %></td>
+      <td><%= link_to "Edit", edit_user_path(user.id), :class => "btn btn-outline-info btn-sm" %></td>
+      <td><%= link_to "Delete", admins_user_path(user.id), :class => "btn btn-outline-danger btn-sm", :data => { :confirm => "Are you sure?" }, :method => "delete" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
