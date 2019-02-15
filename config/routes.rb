@@ -8,4 +8,9 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update] do
   	resources :avatars, only: [:create]
   end
+
+  namespace :admins do
+  	resources :users
+  	root to: "users#index"
+  end
 end

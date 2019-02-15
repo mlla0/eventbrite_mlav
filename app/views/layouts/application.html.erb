@@ -42,7 +42,7 @@
           <li class="nav-item active">
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
               <% if current_user.admin == true %>
-              <%= link_to "Dashboard", user_path(current_user.id), :class => "btn btn-outline-dark" %>
+              <%= link_to "Dashboard", admins_root_path, :class => "btn btn-outline-dark" %>
               <% end %>
               <%= link_to "Your profile", user_path(current_user.id), :class => "btn btn-outline-dark" %>
               <%= link_to "Sign out", destroy_user_session_path, method: :delete, :class => "btn btn-outline-dark" %>
