@@ -10,11 +10,17 @@ class EventsController < ApplicationController
   end
 
   def create
-  	@event = Event.new(start_date: params[:start_date], duration: params[:duration], title: params[:title], description: params[:description], price: params[:price], location: params[:location], admin_id: current_user.id).event_picture.attach(params[:event_picture])
-    if @event.save
-      redirect_to event_path(@event.id), notice: "Event successfully created !"
-    else
-      redirect_to new_event_path, alert: "#{@event.errors.full_messages.join(". ")}"
+  	@event = Event.new(start_date: params[:start_date], duration: params[:duration], title: params[:title], description: params[:description], price: params[:price], location: params[:location], admin_id: current_user.id)
+
+    if params[:event_picture].nil?
+      redirect_to new_event_path, alert: "You must add a picture to your event !"
+    else     
+      if @event.save  
+         @event.event_picture.attach(params[:event_picture])
+        redirect_to event_path(@event.id), notice: "Event successfully created !"
+      else
+        redirect_to new_event_path, alert: "#{@event.errors.full_messages.join(". ")}"
+      end
     end
   end
 
