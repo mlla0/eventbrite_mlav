@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_action :auth_user, only: [:edit, :update, :destroy]
 
   def index
-  	@events = Event.all.order('start_date ASC')
+  	@events = Event.where(validated: true).order('start_date ASC')
   end
 
   def new
@@ -25,9 +25,13 @@ class EventsController < ApplicationController
   end
 
   def show
-  	@event = Event.find(params[:id])
+    @event = Event.find(params[:id])
+    if @event.validated == nil
+      redirect_to root_path
+    else
   	@admin = User.find(@event.admin.id)
   	@attendances = Attendance.where(event_id: @event.id)
+    end
   end
 
   def edit
@@ -37,7 +41,11 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update(start_date: params[:start_date], duration: params[:duration], title: params[:title], description: params[:description], price: params[:price], location: params[:location])
-      redirect_to event_path(params[:id]), notice: "Your event has been successfully edited !"
+      if current_user.admin == true && current_user.id.to_i != User.find(Event.find(params[:id]).admin.id).id.to_i
+        redirect_to admins_events_path, notice: "This event has been successfully edited !"
+      else
+        redirect_to event_path(params[:id]), notice: "Your event has been successfully edited !"
+      end
     else
       redirect_to edit_event_path(params[:id]), alert: "#{@event.errors.full_messages.join(". ")}"
     end
@@ -52,7 +60,7 @@ class EventsController < ApplicationController
   private
 
   def auth_user
-    unless current_user.is_admin?(Event.find(params[:id]))
+    unless current_user.is_admin?(Event.find(params[:id])) || current_user.admin == true
       redirect_to event_path(params[:id])
     end
   end

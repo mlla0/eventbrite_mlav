@@ -1,0 +1,79 @@
+  <div class="row" style="margin-top: 5vh">
+  	<div class="col-6 text-right">
+  		 <%= form_tag url_for(action: 'update'), method: "put" do %>
+  		 <%= hidden_field_tag 'decision', 'true' %>
+  		 <%= submit_tag "Accept the event submission", :class => "btn btn-outline-success" %>
+  		 <% end %>
+  	</div>
+  	<div class="col-6 text-left">
+  		<%= form_tag url_for(action: 'update'), method: "put" do %>
+  		 <%= hidden_field_tag 'decision', 'false' %>
+  		 <%= submit_tag "Refuse the event submission", :class => "btn btn-outline-danger" %>
+  		 <% end %>
+  	</div>
+  </div>
+
+  <div class="row text-center" style="margin-top: 5vh">
+
+    <div class="col-4">
+        <%if @event.event_picture.attached?%>
+            <%= image_tag @event.event_picture, alt: 'event_picture',:class => "img-fluid rounded" %>
+        <%else%>
+        <%end%>
+    </div>
+
+    <div class="col-8">
+        <div class="jumbotron jumbotron-fluid rounded" style="word-wrap: break-word;">
+          <div class="container text-center">
+            <h1 class="display-4 montserrat-light"><%= @event.title %> </h1>
+            <p class="montserrat-light">Organized by <%= link_to "#{@admin.first_name}", "mailto:#{@admin.email}", :class => "text-muted" %></p>
+            <hr>
+            <p class="lead lora-regular" style="padding: 5vh"><%= @event.description %></p>
+          </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row text-center" style="margin-top: 10vh">
+
+    <div class="col-4">
+        <h1><span class="badge badge-dark montserrat-light"><%= @event.location %></span></h1>
+        <h5 class="lora-regular">Location</h5>
+    </div>
+
+    <div class="col-4">
+        <h1><span class="badge badge-dark montserrat-light"><%= @event.price%> €</span></h1>
+        <h5 class="lora-regular">Price</h5>
+    </div>
+
+    <div class="col-4">
+        <h1><span class="badge badge-dark montserrat-light"><%= @attendances.count%></span></h1>
+        <h5 class="lora-regular"><% if @attendances.count <= 1 %>
+        Participant
+        <% else %>
+        Participants
+        <% end %></h5>
+    </div>
+
+</div>
+
+
+<div class="row text-center" style="margin-top: 5vh">
+
+    <div class="col-4">
+        <h1><span class="badge badge-dark montserrat-light"><%= @event.start_date.strftime("%d.%m.%Y") %></span></h1>
+        <h5 class="lora-regular">Start Date</h5>
+    </div>
+
+    <div class="col-4">
+        <h1><span class="badge badge-dark montserrat-light"><%= @event.end_date.strftime("%d.%m.%Y") %></span></h1>
+        <h5 class="lora-regular">End Date</h5>
+    </div>
+
+    <div class="col-4">
+        <h1><span class="badge badge-dark montserrat-light"><%= @event.duration %> min</span></h1>
+        <h5 class="lora-regular">Duration</h5>
+    </div>
+
+</div>

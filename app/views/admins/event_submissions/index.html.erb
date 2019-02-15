@@ -1,0 +1,26 @@
+<h2 style="margin-top: 10vh;">Events submissions</h2>
+
+<table class="table table-sm" style="margin-top: 5vh;">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">Duration</th>
+      <th scope="col">Location</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @events_submissions.each do |event_submission| %>
+    <tr>
+      <td><%= event_submission.id %></td>
+      <td><%= event_submission.title %></td>
+      <td><%= event_submission.start_date.strftime("%d.%m.%Y") %></td>
+      <td><%= event_submission.duration %></td>
+      <td><%= event_submission.location %></td>
+      <td><%= link_to "See submission", admins_event_submission_path(event_submission.id), :class => "btn btn-outline-info btn-sm" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

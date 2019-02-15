@@ -1,0 +1,28 @@
+<h2 style="margin-top: 10vh;">Validated Events</h2>
+
+<table class="table table-sm" style="margin-top: 5vh;">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">Duration</th>
+      <th scope="col">Location</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @validated_events.each do |event| %>
+    <tr>
+      <td><%= event.id %></td>
+      <td><%= event.title %></td>
+      <td><%= event.start_date.strftime("%d.%m.%Y") %></td>
+      <td><%= event.duration %></td>
+      <td><%= event.location %></td>
+      <td><%= link_to "Edit", edit_event_path(event.id), :class => "btn btn-outline-info btn-sm" %></td>
+      <td><%= link_to "Delete", admins_event_path(event.id), :class => "btn btn-outline-danger btn-sm", :data => { :confirm => "Are you sure?" }, :method => "delete" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
