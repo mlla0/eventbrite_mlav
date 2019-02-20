@@ -1,3 +1,5 @@
+ <div class="container">
+
 <div class="jumbotron jumbotron-fluid" style="margin-top: 5vh">
   <div class="container text-center">
 
@@ -43,4 +45,6 @@
 	<% @events.each do |event| %>
 	<a href="<%= event_path(event.id) %>" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"><span class="lead lora-bold"><%= event.title %></span> <span><h1 class="montserrat-light" style="display: inline;"><%= event.start_date.strftime("%d") %></h1><h4 class="montserrat-light" style="display: inline;"><%= event.start_date.strftime(".%m.%Y") %></h4></span></a>
 	<% end %>
+</div>
+
 </div>

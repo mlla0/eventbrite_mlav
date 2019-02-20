@@ -1,0 +1,80 @@
+<div class="row text-center" style="margin-top: 10vh">
+
+      <div class="col-4">
+        <% if @event.event_picture.attached? %>
+            <%= image_tag @event.event_picture, alt: 'event_picture',:class => "img-fluid rounded" %>
+        <% else %>
+        <% end %>
+      </div>
+
+      <div class="col-8">
+          <div class="jumbotron jumbotron-fluid rounded" style="word-wrap: break-word;">
+            <div class="text-center">
+              <h1><%= @event.title %></h1>
+              <p class="lead">Organized by <%= link_to "#{@admin.first_name}", "mailto:#{@admin.email}", :class => "text-muted" %></p>
+              <p class="lead"><a href="#" class="text-warning"><i class="fab fa-facebook-f"></i></a> &nbsp;
+              <a href="#" class="text-warning"><i class="fab fa-twitter"></i></a> &nbsp;
+              <a href="#" class="text-warning"><i class="fab fa-instagram"></i></a> &nbsp;
+              <a href="#" class="text-warning"><i class="fab fa-youtube"></i></a> &nbsp;
+              <a href="#" class="text-warning"><i class="fab fa-vimeo-v"></i></a> &nbsp;
+              <a href="#" class="text-warning"><i class="fab fa-spotify"></i></a></p>
+              <hr>
+              <p class="lead text-left" style="padding: 5vh"><%= @event.description %></p>
+
+              <% if  current_user == nil %>
+                <%= link_to "JOIN THE EVENT !", new_event_attendance_path(params[:id]), :class => "btn btn-primary" %>
+             <% elsif  current_user.is_admin?(@event) %>
+                <%= link_to "EDIT", event_attendances_path(params[:id]), :class => "btn btn-primary" %>
+             <% elsif  current_user.is_participant?(@event) %>
+             <% else %>
+                <%= link_to "JOIN THE EVENT !", new_event_attendance_path(params[:id]), :class => "btn btn-primary" %>
+             <% end %>
+
+            </div>
+          </div>
+      </div>
+
+</div>
+
+<div class="row text-center" style="margin-top: 5vh">
+
+      <div class="col-4">
+          <h1><span class="badge badge-secondary"><%= @event.location %></span></h1>
+          <h5>Location</h5>
+      </div>
+
+      <div class="col-4">
+          <h1><span class="badge badge-secondary"><%= @event.price%> €</span></h1>
+          <h5>Price</h5>
+      </div>
+
+      <div class="col-4">
+          <h1><span class="badge badge-secondary"><%= @attendances.count%></span></h1>
+          <h5><% if @attendances.count <= 1 %>
+        Participant
+        <% else %>
+        Participants
+        <% end %></h5>
+      </div>
+
+  </div>
+
+
+  <div class="row text-center" style="margin-top: 5vh">
+
+      <div class="col-4">
+          <h1><span class="badge badge-secondary"><%= @event.start_date.strftime("%d.%m.%Y") %></span></h1>
+          <h5>Start Date</h5>
+      </div>
+
+      <div class="col-4">
+          <h1><span class="badge badge-secondary"><%= @event.end_date.strftime("%d.%m.%Y") %></span></h1>
+          <h5>End Date</h5>
+      </div>
+
+      <div class="col-4">
+          <h1><span class="badge badge-secondary"><%= @event.duration %> min</span></h1>
+          <h5>Duration</h5>
+      </div>
+
+</div>

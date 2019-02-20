@@ -1,34 +1,22 @@
-<div class="row" style="margin-top: 10vh">
+<div class="container">
 
-	<div class="col-6">
+<div class="row justify-content-around" style="margin-top: 10vh">
+
+	<div class="col-4">
 		<div class="card">
 		  <div class="card-body">
-		    <h1><%= @event.title %></h1>
+		    <h3><%= @event.title %></h3>
 		    <br>
 		    <p class="lora-regular"> Here you can check your reservations list, edit or delete your event and change its picture.</p>
 		    <br>
 		    <p class="text-right">
-		    <%= link_to "Edit your event", edit_event_path(params[:event_id]), :class => "btn btn-outline-info" %>
+		    <%= link_to "Edit your event", edit_event_path(params[:event_id]), :class => "btn btn-outline-info" %><br><br>
 		    <%= link_to "Delete your event", event_path(params[:event_id]), :class => "btn btn-outline-danger", :data => { :confirm => "Are you sure?" }, :method => "delete" %>
 			</p>
 		  </div>
 		</div>
-	</div>
-
-	<div class="col-6">
-		<h3 class="text-right">Participants</h3>
-		<ul class="list-group list-group-flush">
-			<% @participants.each do |participant| %>
-		 		<li class="list-group-item lora-regular"><%= participant.first_name %> <%= participant.last_name.upcase %></li>
-		  	<% end %>
-		</ul>
-	</div>
-
-</div>
-
-<div class="row justify-content-start align-items-center" style="margin-top: 5vh; margin-bottom: 5vh">
-  	<div class="col-md-6 col-sm-10">
-  		<div class="card">
+		<br>
+		<div class="card">
   			<div class="card-body">
 
   		<h6 class="card-title">Change the event picture</h6>
@@ -38,12 +26,23 @@
                     <%= file_field_tag :event_picture, :class => "form-control-file" %>
                 </div>
                 <div class="col text-right">
-                    <%= submit_tag "Update event picture !", :class => "btn btn-outline-secondary btn-sm" %>
+                    <%= submit_tag "Update event picture !", :class => "btn btn-outline-info btn-sm" %>
                 </div>
                 </div>
                   <% end %>
 
               </div>
          </div>
-  	</div>
+	</div>
+
+	<div class="col-6">
+		<h3 class="text-right">Participants</h3>
+		
+		<%= render "shared/listparticipants", collection: @participants %>
+
+	</div>
+
+</div>
+
+
 </div>

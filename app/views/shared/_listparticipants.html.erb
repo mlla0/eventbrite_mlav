@@ -1,0 +1,11 @@
+<div class="list-group list-group-flush" style="margin-top: 5vh">
+
+	<% @participants.each do |participant| %>
+    <a href="mailto:<%= participant.email %>" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+      <span><img src="https://images.pexels.com/photos/555790/pexels-photo-555790.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="rounded-circle" width="60"></span>
+        <span class="lead text-primary"><%= participant.email %></span>
+        <span class="lead"><%= participant.first_name %> <%= participant.last_name.upcase %></span>
+    </a>
+    <% end %>
+
+</div>
