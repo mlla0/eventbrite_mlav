@@ -1,4 +1,4 @@
-<div class="jumbotron jumbotron-fluid rounded" style="margin-top: 5vh">
+<!-- <div class="jumbotron jumbotron-fluid rounded" style="margin-top: 5vh">
   <div class="container text-center">
     <h1 class="display-4 montserrat-light">Welcome on PoowEvent!</h1>
     <p class="lead lora-regular">To create your own event, <%= link_to "click here", new_event_path, :class => "text-muted" %></p>
@@ -10,3 +10,7 @@
 	<a href="<%= event_path(event.id) %>" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"><span class="lead lora-bold"><%= event.title %></span> <span><h1 class="montserrat-light" style="display: inline;"><%= event.start_date.strftime("%d") %></h1><h4 class="montserrat-light" style="display: inline;"><%= event.start_date.strftime(".%m.%Y") %></h4></span></a>
 	<% end %>
 </div>
+
+<%= render "shared/banner", img_url: "https://images.pexels.com/photos/327064/pexels-photo-327064.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", title: "blablabal", text:"laihfzoiozihfpihzarfi"%>
+
+	

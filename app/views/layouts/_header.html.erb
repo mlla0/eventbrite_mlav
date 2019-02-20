@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PoowEvent</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="shortcut icon" href="http://mlav.land/favicon.ico" type="image/x-icon" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Montserrat:300,400,500,700" rel="stylesheet">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-primary">
+      <%= link_to "PooowEvent", root_path, :class => "navbar-brand" %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <%= link_to "Create a new event!", new_event_path, :class => "nav-link montserrat-light" %>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+          
+          <% if user_signed_in? %>
+          <li class="nav-item active">
+            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+              <% if current_user.admin == true %>
+              <%= link_to "Dashboard", admins_root_path, :class => "btn btn-outline-dark" %>
+              <% end %>
+              <%= link_to "Your profile", user_path(current_user.id), :class => "btn btn-outline-dark" %>
+              <%= link_to "Sign out", destroy_user_session_path, method: :delete, :class => "btn btn-outline-dark" %>
+            </div>
+          </li>
+
+          <% else %>
+          <li class="nav-item active">
+            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+              <%= link_to "Log in", new_user_session_path, :class => "btn btn-outline-dark" %>
+              <%= link_to "Sign up", new_user_registration_path, :class => "btn btn-outline-dark" %>
+            </div>
+          </li>
+
+          <% end %>
+
+        </ul>
+        
+      </div>
+    </nav>
